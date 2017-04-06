@@ -30,7 +30,10 @@ class NetMessage(object):
         for attr in json_data:
             if attr in my_attributes:
                 value = json_data[attr]
-                log.debug(" - %s = %s", attr, value)
+                if attr == "imageData":
+                    log.debug(" - %s = ... (%s samples)", attr, len(value))
+                else:
+                    log.debug(" - %s = %s", attr, value)
                 self.__setattr__(attr, value)
 
     def write(self):
